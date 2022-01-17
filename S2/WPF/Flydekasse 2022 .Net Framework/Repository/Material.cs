@@ -8,5 +8,9 @@ namespace Repository
 {
     public class Material
     {
+        public Material()
+        {
+
+        }
     }
 }

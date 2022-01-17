@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Repo
+namespace Repository
 {
     /// <summary>
     /// En klasse der er ansvarlig for at få data binding til at virke,
