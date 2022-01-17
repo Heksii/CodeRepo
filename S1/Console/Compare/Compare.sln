@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31911.196
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Opgave 1", "Opgave 1\Opgave 1.csproj", "{1526F7AC-8682-45A9-A1FF-38D2274B9F2E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Opgave 2", "Opgave 2\Opgave 2.csproj", "{F23980AB-7C94-47B0-9CD6-A82EB8FB0862}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Opgave 3", "Opgave 3\Opgave 3.csproj", "{4AB85D96-2DB4-43C1-9BE7-09DBBDDBE90F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1526F7AC-8682-45A9-A1FF-38D2274B9F2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1526F7AC-8682-45A9-A1FF-38D2274B9F2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1526F7AC-8682-45A9-A1FF-38D2274B9F2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1526F7AC-8682-45A9-A1FF-38D2274B9F2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F23980AB-7C94-47B0-9CD6-A82EB8FB0862}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F23980AB-7C94-47B0-9CD6-A82EB8FB0862}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F23980AB-7C94-47B0-9CD6-A82EB8FB0862}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F23980AB-7C94-47B0-9CD6-A82EB8FB0862}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AB85D96-2DB4-43C1-9BE7-09DBBDDBE90F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AB85D96-2DB4-43C1-9BE7-09DBBDDBE90F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AB85D96-2DB4-43C1-9BE7-09DBBDDBE90F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AB85D96-2DB4-43C1-9BE7-09DBBDDBE90F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E1683F3D-7CAB-47BA-8300-D7580F701150}
+	EndGlobalSection
+EndGlobal
