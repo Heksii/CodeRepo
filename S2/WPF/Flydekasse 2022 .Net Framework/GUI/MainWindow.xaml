@@ -47,12 +47,18 @@
             <ComboBox Grid.Row="0"
                       Grid.Column="1"
                       Margin="2"
-                      MaxHeight="25" />
+                      MaxHeight="25" 
+                      ItemsSource="{Binding materials}"
+                      SelectedItem="{Binding box.material}"
+                      DisplayMemberPath="name"
+                      SelectedIndex="0"
+                      IsSynchronizedWithCurrentItem="True"/>
             <TextBox Grid.Row="1"
                      Grid.Column="1"
                      Margin="2"
                      MaxHeight="25"
-                     HorizontalContentAlignment="Center" />
+                     HorizontalContentAlignment="Center" 
+                     Text="{Binding box.thickness, UpdateSourceTrigger=PropertyChanged}"/>
         </Grid>
         <Grid x:Name="GridBox"
               Grid.Row="1"
@@ -105,27 +111,27 @@
                      HorizontalContentAlignment="Center"
                      Margin="17,3"
                      MaxHeight="25"
-                     Text="" />
+                     Text="{Binding box.heightStr, UpdateSourceTrigger=PropertyChanged}" />
             <TextBox Grid.Column="1"
                      Grid.Row="3"
                      HorizontalContentAlignment="Center"
                      Margin="17,3"
                      MaxHeight="25"
-                     Text="" />
+                     Text="{Binding box.widthStr, UpdateSourceTrigger=PropertyChanged}" />
             <TextBox Grid.Column="1"
                      Grid.Row="4"
                      HorizontalContentAlignment="Center"
                      Margin="17,3"
                      MaxHeight="25"
-                     Text="" />
-            <Label Content="Kassens ydere rummål i m3."
+                     Text="{Binding box.depthStr, UpdateSourceTrigger=PropertyChanged}" />
+            <Label Content="Kassens ydere rummål i m³."
                    Grid.Row="1"
                    Grid.Column="2"
                    VerticalAlignment="Bottom"
                    HorizontalContentAlignment="Center"
                    FontSize="12"
                    Margin="2" />
-            <Label Content="0"
+            <Label Content="{Binding box.outerVolume, UpdateSourceTrigger=PropertyChanged}"
                    Grid.Row="2"
                    Grid.Column="2"
                    VerticalAlignment="Center"
@@ -139,7 +145,7 @@
                    HorizontalContentAlignment="Center"
                    FontSize="12"
                    Margin="2" />
-            <Label Content="0"
+            <Label Content="{Binding box.bouyancy, UpdateSourceTrigger=PropertyChanged}"
                    Grid.Row="4"
                    Grid.Column="2"
                    VerticalAlignment="Center"

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BIZ;
 
 namespace GUI
 {
@@ -20,9 +21,14 @@ namespace GUI
     /// </summary>
     public partial class MainWindow : Window
     {
+        ClassBIZ biz;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            biz = new ClassBIZ();
+            MainGrid.DataContext = biz;
         }
     }
 }
