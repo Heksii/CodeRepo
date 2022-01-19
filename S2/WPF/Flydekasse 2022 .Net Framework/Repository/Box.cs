@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Media;
 
 namespace Repository
 {
@@ -27,6 +29,10 @@ namespace Repository
 
         private Material _material;
 
+        private MediaPlayer bruhSound;
+
+        
+
         public Box()
         {
             _width = 0D;
@@ -42,9 +48,12 @@ namespace Repository
             _innerVolume = 0D;
             _weight = 0D;
             _bouyancy = 0D;
-            material = new Material("Træ", 0.987);
-        }
 
+            material = new Material("Træ", 0.987);
+
+            bruhSound = new MediaPlayer();
+        }
+        
         public double width
         {
             get { return _width; }
@@ -178,10 +187,20 @@ namespace Repository
             // w, h, d - CM
             // volume - m3
 
-            outerVolume = width * height * depth / Math.Pow(100, 3);
-            innerVolume = (width - thickness * 2)* (height - thickness* 2) * (depth - thickness* 2) / Math.Pow(100, 3);
+            double widthM = width / 100D;
+            double heightM = height / 100D;
+            double depthM = depth / 100D;
+
+            outerVolume = widthM * heightM * depthM;
+            innerVolume = (widthM - thickness * 2D)* (heightM - thickness* 2D) * (depthM - thickness* 2D);
+
             weight = (outerVolume - innerVolume) * material.weight;
-            bouyancy = innerVolume * 1000 - weight;
+
+            bouyancy = innerVolume * 1000D - weight;
+
+
+            bruhSound.Open(new Uri(@"C:\KodeMappe\S2\WPF\Flydekasse 2022 .Net Framework\Sounds\bruh.mp3"));
+            bruhSound.Play();
         }
     }
 }
