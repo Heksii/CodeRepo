@@ -35,6 +35,8 @@ namespace Repository
 
         public Box()
         {
+            material = new Material();
+
             _width = 0D;
             _height = 0D;
             _depth = 0D;
@@ -49,7 +51,7 @@ namespace Repository
             _weight = 0D;
             _bouyancy = 0D;
 
-            material = new Material("Træ", 0.987);
+            //material = new Material("Træ", 0.987);
 
             bruhSound = new MediaPlayer();
         }
@@ -104,29 +106,37 @@ namespace Repository
         }
         public double outerVolume
         {
-            get { return _outerVolume; }
+            get { return Convert.ToDouble(Math.Truncate(_outerVolume * 1000) / 1000); }
             set
-            { 
+            {
                 _outerVolume = value;
                 Notify("outerVolume");
             }
         }
         public double innerVolume
         {
-            get { return _innerVolume; }
-            set { _innerVolume = value; }
+            get { return Convert.ToDouble(Math.Truncate(_innerVolume * 1000) / 1000); }
+            set 
+            { 
+                _innerVolume = value;
+                Notify("innerVolume");
+            }
         }
         public double weight
         {
-            get { return _weight; }
-            set { _weight = value; }
+            get { return Convert.ToDouble(Math.Truncate(_weight * 1000) / 1000); }
+            set 
+            {
+                _weight = value;
+                Notify("weight");
+            }
         }
         public double bouyancy
         {
-            get { return _bouyancy; }
+            get { return Convert.ToDouble(Math.Truncate(_bouyancy * 1000) / 1000); }
             set 
             {
-                _bouyancy = Math.Round(value, 4);
+                _bouyancy = value;
                 Notify("bouyancy");
             }
         }
@@ -184,23 +194,35 @@ namespace Repository
 
         public void UpdateProperties()
         {
-            // w, h, d - CM
-            // volume - m3
+            if (width > 0 && height > 0 && depth > 0 && thickness > 0)
+            {
+                double widthMeter = width / 100D;
+                double heightMeter = height / 100D;
+                double depthMeter = depth / 100D;
+                double thicknessMeter = (thickness / 1000D) * 2D;
+                double waterWeightPerCubicMeter = 1000D;
 
-            double widthM = width / 100D;
-            double heightM = height / 100D;
-            double depthM = depth / 100D;
+                outerVolume = widthMeter * heightMeter * depthMeter;
+                innerVolume = (widthMeter - thicknessMeter) * (heightMeter - thicknessMeter) * (depthMeter - thicknessMeter);
 
-            outerVolume = widthM * heightM * depthM;
-            innerVolume = (widthM - thickness * 2D)* (heightM - thickness* 2D) * (depthM - thickness* 2D);
+                double outerVolumeWeight = outerVolume * material.weight * 1000D;
+                double innerVolumeWeight = innerVolume * material.weight * 1000D;
 
-            weight = (outerVolume - innerVolume) * material.weight;
+                weight = outerVolumeWeight - innerVolumeWeight;
 
-            bouyancy = innerVolume * 1000D - weight;
+                bouyancy = (outerVolume * waterWeightPerCubicMeter) - weight; 
+            }
+            else
+            {
+                weight = 0D;
+                bouyancy = 0D;
 
+                outerVolume = 0D;
+                innerVolume = 0D;
+            }
 
-            bruhSound.Open(new Uri(@"C:\KodeMappe\S2\WPF\Flydekasse 2022 .Net Framework\Sounds\bruh.mp3"));
-            bruhSound.Play();
+            //bruhSound.Open(new Uri(@"C:\KodeMappe\S2\WPF\Flydekasse 2022 .Net Framework\Sounds\bruh.mp3"));
+            //bruhSound.Play();
         }
     }
 }

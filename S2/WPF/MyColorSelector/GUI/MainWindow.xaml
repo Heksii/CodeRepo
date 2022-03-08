@@ -1,0 +1,174 @@
+﻿<Window x:Class="GUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI"
+        mc:Ignorable="d"
+        Title="Get HEX and RGB Color code" Height="600" Width="350"
+        Icon="..\Image\icon.jpg"
+        KeyDown="Window_KeyDown">
+    <Grid x:Name="MainGrid" Background="{Binding colorData2.hexValue}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="10" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="10" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="2"
+              Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="35" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="25" />
+            </Grid.RowDefinitions>
+            <Slider Grid.Row="0"
+                    Grid.Column="0"
+                    Background="Red"
+                    Minimum="0"
+                    Maximum="255"
+                    VerticalAlignment="Center"
+                    Value="{Binding colorData.redValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Margin="3" />
+            <Slider Grid.Row="1"
+                    Grid.Column="0"
+                    Background="Green"
+                    Minimum="0"
+                    Maximum="255"
+                    VerticalAlignment="Center"
+                    Value="{Binding colorData.greenValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Margin="3" />
+            <Slider Grid.Row="2"
+                    Grid.Column="0"
+                    Background="Blue"
+                    Minimum="0"
+                    Maximum="255"
+                    VerticalAlignment="Center"
+                    Value="{Binding colorData.blueValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Margin="3" />
+            <Slider Grid.Row="4"
+                    Grid.Column="0"
+                    Background="Gray"
+                    Minimum="0"
+                    Maximum="255"
+                    VerticalAlignment="Center"
+                    Value="{Binding colorData.trnsValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Margin="3" />
+            <Label Grid.Row="0"
+                   Grid.Column="1"
+                   Content="{Binding colorData.redValue}"
+                   VerticalContentAlignment="Center"
+                   Margin="1" />
+            <Label Grid.Row="1"
+                   Grid.Column="1"
+                   Content="{Binding colorData.greenValue}"
+                   VerticalContentAlignment="Center"
+                   Margin="1" />
+            <Label Grid.Row="2"
+                   Grid.Column="1"
+                   Content="{Binding colorData.blueValue}"
+                   VerticalContentAlignment="Center"
+                   Margin="1" />
+            <Label Grid.Row="4"
+                   Grid.Column="1"
+                   Content="{Binding colorData.trnsValue}"
+                   VerticalContentAlignment="Center"
+                   Margin="1" />
+            <TextBox Grid.Row="3"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   IsReadOnly="True"
+                     FontSize="18"
+                     FontWeight="Bold"
+                   Text="{Binding colorData.hexValue}"
+                   VerticalContentAlignment="Center"
+                   HorizontalContentAlignment="Center"
+                   Margin="1" />
+
+            <Slider Grid.Row="6"
+                    Grid.Column="0"
+                    Background="Red"
+                    Minimum="0"
+                    Maximum="255"
+                    VerticalAlignment="Center"
+                    Value="{Binding colorData2.redValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Margin="3" />
+            <Slider Grid.Row="7"
+                    Grid.Column="0"
+                    Background="Green"
+                    Minimum="0"
+                    Maximum="255"
+                    VerticalAlignment="Center"
+                    Value="{Binding colorData2.greenValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Margin="3" />
+            <Slider Grid.Row="8"
+                    Grid.Column="0"
+                    Background="Blue"
+                    Minimum="0"
+                    Maximum="255"
+                    VerticalAlignment="Center"
+                    Value="{Binding colorData2.blueValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Margin="3" />
+            <Slider Grid.Row="10"
+                    Grid.Column="0"
+                    Background="Gray"
+                    Minimum="0"
+                    Maximum="255"
+                    VerticalAlignment="Center"
+                    Value="{Binding colorData2.trnsValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Margin="3" />
+            <Label Grid.Row="6"
+                   Grid.Column="1"
+                   Content="{Binding colorData2.redValue}"
+                   VerticalContentAlignment="Center"
+                   Margin="1" />
+            <Label Grid.Row="7"
+                   Grid.Column="1"
+                   Content="{Binding colorData2.greenValue}"
+                   VerticalContentAlignment="Center"
+                   Margin="1" />
+            <Label Grid.Row="8"
+                   Grid.Column="1"
+                   Content="{Binding colorData2.blueValue}"
+                   VerticalContentAlignment="Center"
+                   Margin="1" />
+            <Label Grid.Row="10"
+                   Grid.Column="1"
+                   Content="{Binding colorData2.trnsValue}"
+                   VerticalContentAlignment="Center"
+                   Margin="1" />
+            <TextBox Grid.Row="9"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   IsReadOnly="True"
+                     FontSize="18"
+                     FontWeight="Bold"
+                   Text="{Binding colorData2.hexValue}"
+                   VerticalContentAlignment="Center"
+                   HorizontalContentAlignment="Center"
+                   Margin="1" />
+        </Grid>
+        <Grid Grid.Row="1"
+              Grid.Column="1"
+              Margin="0, 0, 0, 10"
+              Background="{Binding colorData.hexValue}">            
+        </Grid>
+    </Grid>
+</Window>

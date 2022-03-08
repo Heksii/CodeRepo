@@ -1,0 +1,307 @@
+﻿<Window x:Class="GUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI"
+        mc:Ignorable="d"
+        Title="My Family APP"
+        Height="450"
+        Width="800"
+        MinHeight="450"
+        MinWidth="800">
+    <Grid x:Name="MainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        
+        <!--Denne ListView holder en oversigt over de personer
+            jeg har registreret i mit program.
+            Hvert element i ListView er i realiteten en ny instans
+            af ClassPerson med alle dens Property.
+            Med angivelse af ItemsSource, angiver jeg hvilken samling af data der skal
+            vises i ListView.
+            For at få vist noget sigende data, opretter jeg kolonner til visning af
+            udvalgte elementer af data fra det objekt der holdes i de enkelte ListViewItems.
+            Det betyder, at jeg binde de kolonner der er oprettei i 
+            ListView til at vise udvalgte Property i min ClassPerson.
+            Ved at angive SelectedValue med en Binding til et Property i ClassBIZ
+            vil der automatisk blive overført en instans af det valgte ListViewItem
+            til et Property med navnet selectedPerson som er af datatypen ClassPerson.
+        -->
+        <ListView x:Name="MainList" 
+                  Grid.Column="0"
+                  Margin="3"
+                  SelectedValue ="{Binding selectedPerson}"
+                  ItemsSource="{Binding listPerson}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Navn"
+                                    Width="250"
+                                    DisplayMemberBinding="{Binding name}" />
+                    <GridViewColumn Header="By"
+                                    Width="150"
+                                    DisplayMemberBinding="{Binding zipCity.cityName}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+
+            <Label Grid.Column="0"
+                   Grid.Row="0"
+                   Margin="3"
+                   Content="Navn:"
+                   VerticalContentAlignment="Center" />
+            <Label Grid.Column="0"
+                   Grid.Row="1"
+                   Margin="3"
+                   Content="Adresse:"
+                   VerticalContentAlignment="Center" />
+            <Label Grid.Column="0"
+                   Grid.Row="2"
+                   Margin="3"
+                   Content="Post nr. og bynavn:"
+                   VerticalContentAlignment="Center" />
+            <Label Grid.Column="0"
+                   Grid.Row="3"
+                   Margin="3"
+                   Content="Telefon nr.:"
+                   VerticalContentAlignment="Center" />
+            <Label Grid.Column="0"
+                   Grid.Row="4"
+                   Margin="3"
+                   Content="Mail adr.:"
+                   VerticalContentAlignment="Center" />
+            <Label Grid.Column="0"
+                   Grid.Row="5"
+                   Margin="3"
+                   Content="Fødselsdato:"
+                   VerticalContentAlignment="Center" />
+            <Label Grid.Column="0"
+                   Grid.Row="6"
+                   Margin="3"
+                   Content="Job:"
+                   VerticalContentAlignment="Center" />
+            <Label Grid.Column="0"
+                   Grid.Row="7"
+                   Margin="3"
+                   Content="Køn:"
+                   VerticalContentAlignment="Center" />
+
+            <!--
+            Denne TextBox skal holde data der knytter sig til navnet på en person.
+            TextBoxen benyttes til at vise data, men også til at redigere data.
+            Bindingen til det Property der holder personens navn foretages gennem 
+            Binding i Text.
+            Binding skal være i Mode = TwoWay, da der skal overføres data fra GUI
+            til den tilknyttede Property.
+            Ved at angive UpdateSourceTrigger=PropertyChanged opnår jeg, at ændringer
+            i TextBoxen overføres til Propertiet lige så hurtigt som det indtastes.
+            Til at styrer om man må redigere i teksten, benytter jeg binding til en
+            boolsk Property, som afgør om tekstfeltet er IsReadOnly.
+            -->
+            <TextBox Grid.Column="1"
+                     Grid.Row="0"
+                     Text="{Binding selectedPerson.name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     Margin="2,3"
+                     MaxHeight="25"
+                     FontSize="14"
+                     IsReadOnly="{Binding textLock}"
+                     VerticalContentAlignment="Center" />
+            <Grid Grid.Row="1"
+                  Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="33*" />
+                    <ColumnDefinition Width="65*" />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="50" />
+                </Grid.ColumnDefinitions>
+                <TextBox Grid.Column="0"
+                         Text="{Binding selectedPerson.zipCity.streetName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Margin="2,3"
+                         MaxHeight="25"
+                         FontSize="14"
+                         IsReadOnly="{Binding textLock}"
+                         VerticalContentAlignment="Center"
+                         Grid.ColumnSpan="2" />
+                <Label Grid.Column="2"
+                       Margin="3"
+                       Content="Nr."
+                       VerticalContentAlignment="Center" />
+                <TextBox Grid.Column="3"
+                         Text="{Binding selectedPerson.zipCity.streetNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Margin="2,3"
+                         MaxHeight="25"
+                         FontSize="14"
+                         IsReadOnly="{Binding textLock}"
+                         VerticalContentAlignment="Center" />
+            </Grid>
+
+            <Grid Grid.Column="1"
+                  Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="zipNo"
+                         Grid.Column="0"
+                         Text="{Binding selectedPerson.zipCity.zipCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Margin="2,3"
+                         MaxHeight="25"
+                         FontSize="14"
+                         IsReadOnly="{Binding textLock}"
+                         VerticalContentAlignment="Center"
+                         TextChanged="zipNo_TextChanged" />
+                <Label Grid.Column="1"
+                       Margin="1"
+                       Content="-"
+                       VerticalContentAlignment="Center" />
+                <TextBox Grid.Column="2"
+                         Text="{Binding selectedPerson.zipCity.cityName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Margin="2,3"
+                         MaxHeight="25"
+                         FontSize="14"
+                         IsReadOnly="true"
+                         VerticalContentAlignment="Center" />
+            </Grid>
+
+            <TextBox Grid.Column="1"
+                     Grid.Row="3"
+                     Text="{Binding selectedPerson.phone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     Margin="2,3"
+                     MaxHeight="25"
+                     FontSize="14"
+                     IsReadOnly="{Binding textLock}"
+                     VerticalContentAlignment="Center" />
+            <TextBox Grid.Column="1"
+                     Grid.Row="4"
+                     Text="{Binding selectedPerson.mail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     Margin="2,3"
+                     MaxHeight="25"
+                     FontSize="14"
+                     IsReadOnly="{Binding textLock}"
+                     VerticalContentAlignment="Center" />
+            <Grid Grid.Column="1"
+                  Grid.Row="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="40" />
+                </Grid.ColumnDefinitions>
+                <TextBox Grid.Column="0"
+                         Text="{Binding selectedPerson.stringBirthday, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Margin="2,3"
+                         MaxHeight="25"
+                         FontSize="14"
+                         IsReadOnly="True"
+                         VerticalContentAlignment="Center" />
+                <DatePicker Grid.Column="1"
+                            MaxHeight="25"
+                            Width="30"
+                            IsEnabled="{Binding comboLock}"                           
+                            SelectedDate="{Binding selectedPerson.birthday, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            </Grid>
+            
+            
+            <TextBox Grid.Column="1"
+                     Grid.Row="6"
+                     Text="{Binding selectedPerson.job, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     Margin="2,3"
+                     MaxHeight="25"
+                     FontSize="14"
+                     IsReadOnly="{Binding textLock}"
+                     VerticalContentAlignment="Center" />
+            <ComboBox Grid.Column="1"
+                      Grid.Row="7"
+                      Margin="2,3"
+                      MaxHeight="25"
+                      FontSize="14" 
+                      IsReadOnly="True"
+                      IsEnabled="{Binding comboLock}"
+                      ItemsSource="{Binding listGender}"
+                      DisplayMemberPath="genderType"
+                      SelectedValuePath="genderType"
+                      SelectedValue="{Binding selectedPerson.gender.genderType}"
+                      SelectedItem="{Binding selectedPerson.gender}"/>
+
+
+
+
+            <Grid Grid.Column="0"
+                  Grid.Row="8"
+                  Grid.RowSpan="2"
+                  Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+
+                <Button x:Name="ButtonOpret"
+                        IsEnabled="True"
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        Content="Opret ny"
+                        Margin="3"
+                        Click="ButtonOpret_Click" />
+                <Button x:Name="ButtonRediger"
+                        IsEnabled="True"
+                        Grid.Column="2"
+                        Grid.Row="1"
+                        Content="Rediger"
+                        Margin="3"
+                        Click="ButtonRediger_Click" />
+                <Button x:Name="ButtonSlet"
+                        IsEnabled="True"
+                        Grid.Column="3"
+                        Grid.Row="1"
+                        Content="SLET"
+                        Margin="3"
+                        Click="ButtonSlet_Click" />
+                <Button x:Name="ButtonGem"
+                        IsEnabled="False"
+                        Grid.Column="1"
+                        Grid.Row="3"
+                        Content="Gem data"
+                        Margin="3"
+                        Click="ButtonGem_Click" />
+                <Button x:Name="ButtonFortryd"
+                        IsEnabled="false"
+                        Grid.Column="3"
+                        Grid.Row="3"
+                        Content="Fortryd"
+                        Margin="3"
+                        Click="ButtonFortryd_Click" />
+
+            </Grid>
+
+        </Grid>
+
+    </Grid>
+</Window>

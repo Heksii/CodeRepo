@@ -41,9 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NeuralNetwork.cs" />
     <Compile Include="ClassNotify.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="NodeConnection.cs" />
+    <Compile Include="NodeLayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

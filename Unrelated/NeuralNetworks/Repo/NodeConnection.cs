@@ -10,13 +10,28 @@ namespace Repo
     {
         private Node node1;
         private Node node2;
-
         private double weight;
 
-        public NodeConnection()
+        public NodeConnection(Node n1, Node n2)
         {
-            node1 = new Node();
-            node2 = new Node();
+            Node1 = n1;
+            Node2 = n2;
+        }
+        public NodeConnection(NodeConnection inCon)
+        {
+            Node1 = inCon.Node1;
+            Node2 = inCon.Node2;
+        }
+
+        public Node Node1
+        {
+            get { return node1; }
+            set { node1 = value; }
+        }
+        public Node Node2
+        {
+            get { return node2; }
+            set { node2 = value; }
         }
 
         public double Weight {
@@ -32,12 +47,6 @@ namespace Repo
                 }
             }
         
-        }
-
-        public NodeConnection(Node n1, Node n2)
-        {
-            node1 = n1;
-            node2 = n2;
         }
 
         private static double Sigmoid(double value)

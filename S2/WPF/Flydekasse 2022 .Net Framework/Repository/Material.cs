@@ -11,6 +11,12 @@ namespace Repository
         private string _name;
         private double _weight;
 
+        public Material()
+        {
+            weight = 0D;
+            name = "";
+        }
+
         public Material(Material inMat)
         {
             weight = inMat.weight;

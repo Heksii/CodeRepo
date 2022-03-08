@@ -1,0 +1,683 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>9</zoom_level>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>0</x>
+      <y>0</y>
+      <w>1980</w>
+      <h>2412</h>
+    </coordinates>
+    <panel_attributes>MeatGross
+--
+layer=1
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>45</x>
+      <y>72</y>
+      <w>495</w>
+      <h>1260</h>
+    </coordinates>
+    <panel_attributes>GUI
+--
+layer=2
+
+bg=light_gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>675</x>
+      <y>90</y>
+      <w>558</w>
+      <h>666</h>
+    </coordinates>
+    <panel_attributes>BIZ
+--
+layer=2
+
+bg=light_gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>1395</x>
+      <y>81</y>
+      <w>522</w>
+      <h>891</h>
+    </coordinates>
+    <panel_attributes>IO
+--
+layer=2
+
+bg=light_gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>72</x>
+      <y>1521</y>
+      <w>1845</w>
+      <h>828</h>
+    </coordinates>
+    <panel_attributes>Repository
+--
+layer=2
+
+bg=light_gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>711</x>
+      <y>153</y>
+      <w>459</w>
+      <h>531</h>
+    </coordinates>
+    <panel_attributes>ClassBIZ
+--
+-ClassCallWebAPI ccwa = new ClassCallWebAPI()
+-ClassMeatGrossDB cmgdb = new ClassMeatGrossDB()
+
+-List&lt;ClassCustomer&gt; _listCustomer
+-List&lt;ClassCountry&gt; _listCountry
+-List&lt;ClassMeat&gt; _listMeat
+-ClassApiRates _apiRates
+-ClassCustomer _selectedCustomer
+-ClassCustomer _editOrNewCustomer
+-ClassOrder _order
+-bool _isEnabled
+--
++ClassBIZ()
++&lt;property&gt; bool isEnabled
++&lt;property&gt; ClassOrder order
++&lt;property&gt; ClassCustomer editOrNewCustomer
++&lt;property&gt; ClassCustomer selectedCustomer
++&lt;property&gt; ClassApiRates apiRates
++&lt;property&gt; List&lt;ClassMeat&gt; listMeat
++&lt;property&gt; List&lt;ClassCountry&gt; listCountry
++&lt;property&gt; List&lt;ClassCustomer&gt; listCustomer
+
++UpdateListCustomer(): void
++GetApiRates(): async Task&lt;ClassApiRates&gt;
++SetUpListCustomer(): void
++SaveNewCustomer(): int
++UpdateCustomer(): void
++SaveSaleInDB(): void
++SaveNewMeatPrice(string inMeat, double inPrice, int inWeight): void
+
+-SetUpListCountry(): void
+--
+Responsibilities
+Denne class repræsenter forretningslogikken i applikationen
+
+layer=3</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>72</x>
+      <y>333</y>
+      <w>441</w>
+      <h>189</h>
+    </coordinates>
+    <panel_attributes>UserControlCustomer
+--
+-ClassBIZ BIZ
+-Grid gridLeft
+-Grid gridRight
+-UserControlCustomerEdit UCCE
+--
++UserControlCustomer(ClassBIZ inBIZ, Grid inGridLeft, Grid inGritRight)
+-buttonEditCustomer_Click(object sender, RoutedEventArgs e)
+-buttonNewCustomer_Click(object sender, RoutedEventArgs e)
+--
+Responsibilities
+Funktionalitet der knytter sig til UserControlCustomer
+
+layer=3</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1494</x>
+      <y>117</y>
+      <w>306</w>
+      <h>261</h>
+    </coordinates>
+    <panel_attributes>ClassDbCon
+--
+-string _connectionString
+#SqlConnection con
+-SqlCommand _command
+--
++ClassDbCon()
++ClassDbCon(string inConnectionString)
+#SetCon(string inConnectionString): void
+#OpenDB(): void
+#CloseDB(): void
+#ExecuteNonQuery(string sqlQuery): int
+#DbReturnDataTable(string sqlQuery): DataTable
+--
+Responsibilities
+Denne class har ansvaret for kommunikationen
+med den database der bliver knyttet til via
+den aktive ConnectionString
+
+layer=3</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>72</x>
+      <y>549</y>
+      <w>441</w>
+      <h>189</h>
+    </coordinates>
+    <panel_attributes>UserControlCustomerEdit
+--
+-ClassBIZ BIZ
+-Grid gridLeft
+-Grid gridRight
+--
++UserControlCustomerEdit(ClassBIZ inBIZ, Grid inGridLeft, Grid inGridRight)
+-buttonSaveCustomer_Click(object sender, RoutedEventArgs e)
+-buttonRegret_Click(object sender, RoutedEventArgs e)
+
+-SaveCustomerData(): void
+--
+Responsibilities
+Funktionalitet der knytter sig til UserControlCustomerEdit
+
+layer=3</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>72</x>
+      <y>765</y>
+      <w>441</w>
+      <h>252</h>
+    </coordinates>
+    <panel_attributes>UserControlMeatPriceUpdate
+--
+-ClassBIZ BIZ
+-Grid gridLeft
+-Grid gridRight
+--
++UserControlMeatPriceUpdate(ClassBIZ inBIZ, Grid inGridLeft, Grid inGridRight)
+-PrisGris_Click(object sender, RoutedEventArgs e)
+-PrisKalv_Click(object sender, RoutedEventArgs e)
+-PrisOkse_Click(object sender, RoutedEventArgs e)
+-PrisKylling_Click(object sender, RoutedEventArgs e)
+-PrisKalkun_Click(object sender, RoutedEventArgs e)
+-PrisHest_Click(object sender, RoutedEventArgs e)
+-UserControl_Loaded(object sender, RoutedEventArgs e)
+-ButtonExitUpdateMeat_Click(object sender, RoutedEventArgs e)
+--
+Responsibilities
+Funktionalitet der knytter sig til UserControlMeatPriceUpdate
+
+layer=3</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>72</x>
+      <y>1035</y>
+      <w>441</w>
+      <h>225</h>
+    </coordinates>
+    <panel_attributes>UserControlOrderMeat
+--
+-ClassBIZ BIZ
+-Grid gridLeft
+-Grid gridRight
+-UserControlMeatPriceUpdate UCMPU
+--
++UserControlOrderMeat(ClassBIZ inBIZ, Grid inGridLeft, Grid inGridRight)
+-buttonSellToCustomer_Click(object sender, RoutedEventArgs e)
+-UpdateMeatPriceAndStock_Click(object sender, RoutedEventArgs e)
+
+-SaveCustomerData(): void
+--
+Responsibilities
+Funktionalitet der knytter sig til UserControlOrderMeat
+
+layer=3</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>72</x>
+      <y>126</y>
+      <w>441</w>
+      <h>189</h>
+    </coordinates>
+    <panel_attributes>MainWindow
+--
+-ClassBIZ BIZ
+-UserControlCustomer UCCustomer
+-UserControlOrderMeat UCOrderMeat
+--
++MainWindow()
+-Window_Loaded(object sender, RoutedEventArgs e): async
+--
+Responsibilities
+Funktionalitet der knytter sig til MainWindow
+
+Window_Loaded : Skal starte kaldet til Web API der 
+   skal opdatere valutakurser hvert 10 min.
+
+layer=3</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1422</x>
+      <y>432</y>
+      <w>459</w>
+      <h>261</h>
+    </coordinates>
+    <panel_attributes>ClassMeatGrossDB
+--
+
+--
++ClassMeatGrossDB()
++GetAllCutomersFromDB(): List&lt;ClassCustomer&gt;
++GetAllCoutryFromDB(): List&lt;ClassCountry&gt;
++ GetAllMeatFromDB(): List&lt;ClassMeat&gt;
++SaveNewCustomerInDB(ClassCustomer inCustomer): int
++UpdateCustomerInDB(ClassCustomer inCustomer): void
++UpdateMeatVolme(ClassOrder inOrder): void
++UpdatePriceForMeatInDB(string inMeat, double inPrice, int inWeight): void
++UpdateTimestampForMeat(): void
++AddOrderToDB(ClassOrder inOrder): int
+--
+Responsibilities
+Denne class har ansvaret for at danne et kommunikationslag mellem ClassBIZ
+og selve databasen. Det er her at alle SQL udtryk bliver skrevet.
+
+layer=3</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1476</x>
+      <y>729</y>
+      <w>333</w>
+      <h>171</h>
+    </coordinates>
+    <panel_attributes>ClassCallWebAPI
+--
+
+--
++ClassCallWebAPI()
++GetRatesFromWebApi(): async Task&lt;ClassApiRates&gt;
+-GetURLContentsAsync(string url): async Task&lt;string&gt;
+--
+Responsibilities
+Denne class har ansvaret for kommunikation med
+den Web API der giver adgang til valutakurser
+
+layer=3</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1404</x>
+      <y>1638</y>
+      <w>360</w>
+      <h>189</h>
+    </coordinates>
+    <panel_attributes>ClassNotify
+--
++&lt;event&gt; PropertyChangedEventHandler PropertyChanged
+--
++ClassNotify()
+#Notify(string propertyName): void
+--
+Responsibilities
+Denne class har ansvaret for at knytte binding i GUI
+med de rette Propperty i alle Classes.
+Dette gøres gennem metoden Notify som via 
+interfacet INotifyPropertyChanged danner bro
+mellem Property og Binding
+
+layer=3</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1494</x>
+      <y>1944</y>
+      <w>297</w>
+      <h>234</h>
+    </coordinates>
+    <panel_attributes>ClassApiRates
+--
+-long _timestamp
+-Dictionary&lt;string, double&gt; _Rates
+-string _newTimestamp
+--
++ClassApiRates()
++&lt;property&gt;long timestamp
++&lt;property&gt;Dictionary&lt;string, double&gt; Rates
++&lt;property&gt;string newTimestamp
+--
+Responsibilities
+Denne class har ansvaret for at kunne 
+modtage og holde de data der modtages
+ved et kald til Wep API :
+  openexchangerates.org
+
+layer=3</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>153</x>
+      <y>1944</y>
+      <w>270</w>
+      <h>360</h>
+    </coordinates>
+    <panel_attributes>ClassOrder
+--
+-ClassMeat _orderMeat
+-ClassCustomer _orderCustomer
+-int _orderWeight
+-double _orderPriceDKK
+-double _orderPriceValuta
+-string _priceDKK
+-string _priceValuta
+--
++ClassOrder()
++&lt;property&gt;string priceValuta
++&lt;property&gt;string priceDKK
++&lt;property&gt;double orderPriceValuta
++&lt;property&gt;double orderPriceDKK
++&lt;property&gt;int orderWeight
++&lt;property&gt;ClassCustomer orderCustomer
++&lt;property&gt;ClassMeat orderMeat
+
+-CalculateAllPrices(): void
+--
+Responsibilities
+Denne class har ansvaret for alle data
+der knytter sig til en order og den
+metode der skal udregne div. priser
+
+layer=3</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>495</x>
+      <y>1944</y>
+      <w>252</w>
+      <h>315</h>
+    </coordinates>
+    <panel_attributes>ClassMeat
+--
+-int _id
+-string _TypeOfMeat
+-int _stock
+-double _price
+-DateTime _priceTimeStamp
+-string _strTimeStamp
+--
++ClassMeat()
++&lt;property&gt;int id
++&lt;property&gt;string TypeOfMeat
++&lt;property&gt;int stock
++&lt;property&gt;double price
++&lt;property&gt;DateTime priceTimeStamp
++&lt;property&gt;string strTimeStamp
+--
+Responsibilities
+Denne class har ansvaret for alle
+data der knytter sig til en bestemt
+type kød.
+
+layer=3</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>801</x>
+      <y>1944</y>
+      <w>315</w>
+      <h>378</h>
+    </coordinates>
+    <panel_attributes>ClassCustomer
+--
+-int _id
+-string _companyName
+-string _address
+-string _zipCity
+-string _phone
+-string _mail
+-string _contactName
+-ClassCountry _country
+--
++ClassCustomer()
++ClassCustomer(ClassCustomer inClassCustomer)
++&lt;property&gt;int id
++&lt;property&gt;string companyName
++&lt;property&gt;string address
++&lt;property&gt;string zipCity
++&lt;property&gt;string phone
++&lt;property&gt;string mail
++&lt;property&gt;string contactName
++&lt;property&gt;ClassCountry country
+--
+Responsibilities
+Denne class har ansvaret for alle data der
+knytter sig til en kunde
+
+layer=3</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1152</x>
+      <y>1944</y>
+      <w>297</w>
+      <h>324</h>
+    </coordinates>
+    <panel_attributes>ClassCountry
+--
+-int _id
+-string _countryCode
+-string _countryName
+-string _valutaName
+-double _valutaRate
+-DateTime _updateTime
+--
++ClassCountry()
++ClassCountry(ClassCountry inClassCountry)
++&lt;property&gt;int id
++&lt;property&gt;string countryCode
++&lt;property&gt;string countryName
++&lt;property&gt;string valutaName
++&lt;property&gt;double valutaRate
++&lt;property&gt;DateTime updateTime
+--
+Responsibilities
+Denne class har ansvaret for alle data
+der knytter sig til et givent land som
+skal anvendes i denne applikation
+
+layer=3</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>531</x>
+      <y>459</y>
+      <w>162</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+layer=4</panel_attributes>
+    <additional_attributes>10.0;10.0;160.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1224</x>
+      <y>468</y>
+      <w>189</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+layer=4</panel_attributes>
+    <additional_attributes>10.0;10.0;190.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>531</x>
+      <y>990</y>
+      <w>360</w>
+      <h>567</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+layer=4</panel_attributes>
+    <additional_attributes>10.0;10.0;380.0;10.0;380.0;610.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>909</x>
+      <y>747</y>
+      <w>27</w>
+      <h>810</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+layer=4</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;880.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>954</x>
+      <y>900</y>
+      <w>459</w>
+      <h>657</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+layer=4</panel_attributes>
+    <additional_attributes>490.0;10.0;10.0;10.0;10.0;710.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1683</x>
+      <y>1575</y>
+      <w>162</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>lt=-()
+m2=INotifyPropertyChanged
+layer=4
+</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1269</x>
+      <y>1791</y>
+      <w>153</w>
+      <h>171</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+layer=4</panel_attributes>
+    <additional_attributes>150.0;10.0;10.0;10.0;10.0;170.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>936</x>
+      <y>1773</y>
+      <w>486</w>
+      <h>189</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+layer=4</panel_attributes>
+    <additional_attributes>520.0;10.0;10.0;10.0;10.0;190.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>594</x>
+      <y>1746</y>
+      <w>828</w>
+      <h>216</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+layer=4</panel_attributes>
+    <additional_attributes>900.0;10.0;10.0;10.0;10.0;220.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>261</x>
+      <y>1719</y>
+      <w>1161</w>
+      <h>243</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+layer=4</panel_attributes>
+    <additional_attributes>1270.0;10.0;10.0;10.0;10.0;250.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1611</x>
+      <y>369</y>
+      <w>27</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+layer=4</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1062</x>
+      <y>675</y>
+      <w>468</w>
+      <h>981</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+layer=4</panel_attributes>
+    <additional_attributes>500.0;1070.0;500.0;910.0;10.0;910.0;10.0;10.0</additional_attributes>
+  </element>
+</diagram>
