@@ -30,6 +30,8 @@ namespace GUI.Usercontrols
             InitializeComponent();
 
             BIZ = inBiz;
+
+            MainGrid.DataContext = BIZ;
             leftGrid = inLeftGrid;
             rightGrid = inRightGrid;
         }

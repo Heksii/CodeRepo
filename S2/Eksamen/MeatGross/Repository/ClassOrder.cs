@@ -8,6 +8,7 @@ namespace Repository
 {
     public class ClassOrder : ClassNotify
     {
+        private ClassApiRates _apiRates;
         private ClassMeat _orderMeat;
         private ClassCustomer _orderCustomer;
         private int _orderWeight;
@@ -16,15 +17,21 @@ namespace Repository
         private string _priceDKK;
         private string _priceValuta;
 
-        public ClassOrder()
+        public ClassOrder(ClassApiRates inApiRates)
         {
             orderMeat = new ClassMeat();
             orderCustomer = new ClassCustomer();
             orderWeight = 0;
             orderPriceDKK = 0;
             orderPriceValuta = 0;
+            apiRates = inApiRates;
         }
 
+        public ClassApiRates apiRates
+        {
+            get { return _apiRates; }
+            set { _apiRates = value; }
+        }
         public string priceValuta
         {
             get { return _priceValuta; }
@@ -115,11 +122,17 @@ namespace Repository
     
         private void CalculateAllPrices()
         {
-            orderPriceDKK = orderMeat.pricePerKG * orderWeight;
-            orderPriceValuta = orderMeat.pricePerKG * orderWeight * orderCustomer.country.valutaRate;
+            double dkkKurs = 0D;
+            if (orderCustomer == null) return;
+            if (apiRates == null) return;
 
-            priceDKK = orderPriceDKK.ToString();
-            priceValuta = orderPriceValuta.ToString();
+            dkkKurs = apiRates.Rates["DKK"]; 
+
+            orderPriceDKK = orderMeat.pricePerKG * orderWeight;
+            orderPriceValuta = orderMeat.pricePerKG * orderWeight * (orderCustomer.country.valutaRate / dkkKurs);
+
+            priceDKK = orderPriceDKK.ToString("##0.0000");
+            priceValuta = orderPriceValuta.ToString("##0.0000");
         }
     }
 }

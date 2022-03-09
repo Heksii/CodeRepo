@@ -47,11 +47,11 @@
                       Height="23"
                       Margin="5"
                       VerticalAlignment="Center"
-                      ItemsSource="{Binding x}"
-                      SelectedValuePath="TypeOfMeat"
-                      DisplayMemberPath="TypeOfMeat"
-                      SelectedValue="{Binding x}"
-                      SelectedItem="{Binding x}" />
+                      ItemsSource="{Binding listMeat}"
+                      SelectedValuePath="typeOfMeat"
+                      DisplayMemberPath="typeOfMeat"
+                      SelectedValue="{Binding listMeat.typeOfMeat}"
+                      SelectedItem="{Binding order.orderMeat}" />
 
 
             <Label Content="Pris pr. kg.:"
@@ -68,7 +68,7 @@
                    VerticalAlignment="Stretch"
                    FontSize="10" />
             <Label x:Name="labelMeatPrice"
-                   Content="{Binding x}"
+                   Content="{Binding order.orderMeat.pricePerKG}"
                    Grid.Row="2"
                    Grid.Column="1"
                    Margin="24,2,24,2"
@@ -81,7 +81,7 @@
                    VerticalAlignment="Stretch"
                    FontSize="16" />
             <Label x:Name="labelMeatOnStock"
-                   Content="{Binding x}"
+                   Content="{Binding order.orderMeat.stock}"
                    Grid.Row="3"
                    Grid.Column="1"
                    Margin="24,2,2,2"
@@ -104,7 +104,7 @@
                      FontWeight="DemiBold"
                      Margin="24,2,24,2"
                      TextAlignment="Right"
-                     Text="{Binding x, UpdateSourceTrigger=PropertyChanged}"
+                     Text="{Binding order.orderWeight, UpdateSourceTrigger=PropertyChanged}"
                      VerticalAlignment="Top"
                      FontSize="26" />
 
@@ -123,7 +123,7 @@
                     <ColumnDefinition Width="50" />
                 </Grid.ColumnDefinitions>
                 <Label x:Name="labelCostPrise"
-                       Content="{Binding x}"
+                       Content="{Binding order.priceDKK}"
                        Grid.Column="0"
                        FontFamily="System"
                        FontWeight="DemiBold"
@@ -154,14 +154,14 @@
                     <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="50" />
                 </Grid.ColumnDefinitions>
-                <Label Content="{Binding x}"
+                <Label Content="{Binding order.priceValuta}"
                        Grid.Column="0"
                        Margin="2"
                        FontSize="14"
                        HorizontalContentAlignment="Right"
                        VerticalAlignment="Bottom" />
                 <Label Grid.Column="1"
-                       Content="{Binding x}"
+                       Content="{Binding selectedCustomer.country.countryCode}"
                        FontFamily="System"
                        FontWeight="DemiBold"
                        Margin="2"

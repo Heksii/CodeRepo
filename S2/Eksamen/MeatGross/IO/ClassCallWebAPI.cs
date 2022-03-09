@@ -7,6 +7,7 @@ using System.IO;
 using System.Net;
 using Newtonsoft.Json;
 using Repository;
+using System.Windows;
 
 namespace IO
 {
@@ -22,8 +23,15 @@ namespace IO
         {
             ClassApiRates res = new ClassApiRates();
 
-            string jsonResult = await GetURLContentAsync(@"https://openexchangerates.org/api/latest.json?app_id=2cb05a5bf7804828b118ddd3e58a2e60&base=DKK");
-            res = JsonConvert.DeserializeObject<ClassApiRates>(jsonResult);
+            try
+            {
+                string strJson = await GetURLContentAsync("https://openexchangerates.org/api/latest.json?app_id=2cb05a5bf7804828b118ddd3e58a2e60&base=USD");
+                res = JsonConvert.DeserializeObject<ClassApiRates>(strJson);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "API Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
 
             return res;
         }

@@ -7,7 +7,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="370" d:DesignWidth="425">
     <Grid x:Name="MainGrid"
-          Background="White">
+          Background="White"
+          IsEnabled="{Binding isEnabled}">
         <Grid.RowDefinitions>
             <RowDefinition Height="8*" />
             <RowDefinition Height="11*" />
@@ -89,28 +90,28 @@
                  FontSize="16" />
         <TextBox Grid.Row="6"
                  Grid.Column="1"
-                 Text="{Binding x}"
+                 Text="{Binding selectedCustomer.phone}"
                  VerticalContentAlignment="Center"
                  IsReadOnly="true"
                  Margin="5"
                  FontSize="16" />
         <TextBox Grid.Row="7"
                  Grid.Column="1"
-                 Text="{Binding x}"
+                 Text="{Binding selectedCustomer.mail}"
                  VerticalContentAlignment="Center"
                  IsReadOnly="true"
                  Margin="5"
                  FontSize="16" />
         <TextBox Grid.Row="8"
                  Grid.Column="1"
-                 Text="{Binding x}"
+                 Text="{Binding selectedCustomer.contactName}"
                  VerticalContentAlignment="Center"
                  IsReadOnly="true"
                  Margin="5"
                  FontSize="16" />
         <TextBox Grid.Row="9"
                  Grid.Column="1"
-                 Text="{Binding x}"
+                 Text="{Binding selectedCustomer.country.countryName}"
                  VerticalContentAlignment="Center"
                  IsReadOnly="true"
                  Margin="5"

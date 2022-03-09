@@ -7,7 +7,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="370" d:DesignWidth="425">
     <Grid x:Name="MainGrid"
-          Background="White">
+          Background="White"
+          IsEnabled="{Binding isEnabled}">
         <Grid.RowDefinitions>
             <RowDefinition Height="8*" />
             <RowDefinition Height="11*" />
@@ -47,17 +48,6 @@
                HorizontalAlignment="Left"
                Margin="10,0,0,0"
                VerticalAlignment="Bottom" />
-        <ComboBox x:Name="comboBoxCustomer"
-                  Grid.Column="0"
-                  Grid.Row="1"
-                  Grid.ColumnSpan="2"
-                  Margin="5"
-                  VerticalAlignment="Top"
-                  ItemsSource="{Binding listCustomer}"
-                  SelectedValuePath="contactName"
-                  DisplayMemberPath="contactName"
-                  SelectedValue="{Binding listCustomer.contactName}"
-                  SelectedItem="{Binding editOrNewCustomer}" />
 
         <TextBox Grid.Row="2"
                  Grid.Column="1"
@@ -80,25 +70,25 @@
                  FontSize="16" />
         <TextBox Grid.Row="5"
                  Grid.Column="1"
-                 Text="{Binding x}"
+                 Text="{Binding editOrNewCustomer.zipCode}"
                  VerticalContentAlignment="Center"
                  Margin="5"
                  FontSize="16" />
         <TextBox Grid.Row="6"
                  Grid.Column="1"
-                 Text="{Binding x}"
+                 Text="{Binding editOrNewCustomer.phone}"
                  VerticalContentAlignment="Center"
                  Margin="5"
                  FontSize="16" />
         <TextBox Grid.Row="7"
                  Grid.Column="1"
-                 Text="{Binding x}"
+                 Text="{Binding editOrNewCustomer.mail}"
                  VerticalContentAlignment="Center"
                  Margin="5"
                  FontSize="16" />
         <TextBox Grid.Row="8"
                  Grid.Column="1"
-                 Text="{Binding x}"
+                 Text="{Binding editOrNewCustomer.contactName}"
                  VerticalContentAlignment="Center"
                  Margin="5"
                  FontSize="16" />
@@ -108,9 +98,9 @@
                   Margin="5"
                   FontSize="16" 
                   ItemsSource="{Binding listCountry}"
-                  SelectedValuePath="countryName"
+                  SelectedValuePath="id"
                   DisplayMemberPath="countryName"
-                  SelectedValue="{Binding listCountry.countryName}"
+                  SelectedValue="{Binding editOrNewCustomer.country.id}"
                   SelectedItem="{Binding editOrNewCustomer.country}" 
                   />
 

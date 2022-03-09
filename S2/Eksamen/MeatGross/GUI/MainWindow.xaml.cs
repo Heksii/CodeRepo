@@ -39,5 +39,15 @@ namespace GUI
             LeftGrid.Children.Add(UCCustomer);
             RightGrid.Children.Add(UCOrderMeat);
         }
+
+        private async void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            while (true)
+            {
+                BIZ.apiRates = await BIZ.GetApiRates();
+                await Task.Delay(600000);
+            }
+            
+        }
     }
 }

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Repository;
 using BIZ;
 
 namespace GUI.Usercontrols
@@ -37,12 +38,17 @@ namespace GUI.Usercontrols
 
         private void buttonSaveCustomer_Click(object sender, RoutedEventArgs e)
         {
+            BIZ.selectedCustomer = BIZ.editOrNewCustomer;
+            int newCustomerId = BIZ.SaveCustomer();
+            BIZ.UpdateListCustomerAndSelectedCustomer(newCustomerId);
 
+            leftGrid.Children.Remove(this);
         }
 
         private void buttonRegret_Click(object sender, RoutedEventArgs e)
         {
-
+            BIZ.editOrNewCustomer = new ClassCustomer();
+            leftGrid.Children.Remove(this);
         }
     }
 }

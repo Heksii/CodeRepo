@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IO;
+using Nito.AsyncEx;
 using Repository;
 
 namespace BIZ
@@ -24,13 +25,20 @@ namespace BIZ
 
         public ClassBiz()
         {
-            _listCustomer = new List<ClassCustomer>();
-            _listCountry = new List<ClassCountry>();
-            _listMeat = new List<ClassMeat>();
-            _apiRates = new ClassApiRates();
-            _selectedCustomer = new ClassCustomer();
-            _editOrNewCustomer = new ClassCustomer();
-            _isEnabled = false;
+            // Få alle verdier fra web api
+            apiRates = Task.Run(async () => await GetApiRates()).ConfigureAwait(false).GetAwaiter().GetResult();
+
+            listCustomer = new List<ClassCustomer>();
+            listCountry = new List<ClassCountry>();
+            listMeat = new List<ClassMeat>();
+            order = new ClassOrder(apiRates);
+            selectedCustomer = new ClassCustomer();
+            editOrNewCustomer = new ClassCustomer();
+            isEnabled = true;
+
+            listCountry = cmgdb.GetAllCountriesFromDB(apiRates);
+            listCustomer = cmgdb.GetAllCustomersFromDB(apiRates);
+            listMeat = cmgdb.GetAllMeatFromDB();
         }
 
         public List<ClassCustomer> listCustomer
@@ -89,6 +97,7 @@ namespace BIZ
                 if (_selectedCustomer != value)
                 {
                     _selectedCustomer = value;
+                    order.orderCustomer = _selectedCustomer;
                 }
                 Notify("selectedCustomer");
             }
@@ -133,6 +142,7 @@ namespace BIZ
         public async Task<ClassApiRates> GetApiRates()
         {
             ClassApiRates res = new ClassApiRates();
+            res = await ccwa.GetRatesFromWebApi();
 
             return res;
         }
@@ -140,33 +150,43 @@ namespace BIZ
         {
 
         }
-        public void UpdateListCustomer()
+        public void UpdateListCustomerAndSelectedCustomer(int newCustomerId)
         {
+            List<ClassCustomer> newCustomerList = cmgdb.GetAllCustomersFromDB(apiRates);
+            ClassCustomer newSelectedCustomer = new ClassCustomer();
 
+            foreach (ClassCustomer cc in newCustomerList)
+            {
+                if (cc.id == selectedCustomer.id || cc.id == newCustomerId)
+                {
+                    newSelectedCustomer = cc;
+                    break;
+                }
+            }
+
+            listCustomer = newCustomerList;
+            selectedCustomer = newSelectedCustomer;
         }
-        public int SaveNewCustomer()
+        public int SaveCustomer()
         {
             int res = 0;
 
+            foreach (ClassCustomer cc in listCustomer)
+            {
+                if (cc.id == selectedCustomer.id)
+                {
+                    cmgdb.UpdateCustomerInDB(selectedCustomer);
+                    return res;
+                }
+            }
 
-
-
-            return res;
-        }
-        public void UpdateCustomer()
-        {
-
+            return cmgdb.SaveNewCustomerInDB(selectedCustomer);
         }
         public void SaveSaleInDB()
         {
 
         }
         public void SaveNewMeatPrice(string inMeat, double inPrice, int inWeight)
-        {
-
-        }
-
-        private void SetUpListCountry()
         {
 
         }
