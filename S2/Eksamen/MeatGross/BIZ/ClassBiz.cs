@@ -9,6 +9,11 @@ using Repository;
 
 namespace BIZ
 {
+    /// <summary>
+    /// Denne class har ansvaret for alt bagvedliggende arbejde
+    /// som programmet skal fortage sig, 
+    /// den indeholder også alle værdierne som brugergrænsefladen bindes til.
+    /// </summary>
     public class ClassBiz : ClassNotify
     {
         ClassCallWebAPI ccwa = new ClassCallWebAPI();

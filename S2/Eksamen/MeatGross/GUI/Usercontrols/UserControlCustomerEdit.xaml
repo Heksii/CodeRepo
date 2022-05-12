@@ -25,6 +25,18 @@
             <ColumnDefinition Width="2*" />
             <ColumnDefinition Width="4*" />
         </Grid.ColumnDefinitions>
+        <ComboBox x:Name="comboBoxCustomer"
+                  Grid.Column="0"
+                  Grid.Row="1"
+                  Grid.ColumnSpan="2"
+                  Margin="5"
+                  VerticalAlignment="Top"
+                  ItemsSource="{Binding listCustomer}"
+                  SelectedValuePath="companyName"
+                  DisplayMemberPath="companyName"
+                  SelectedValue="{Binding listCustomer.companyName}"
+                  SelectedItem="{Binding selectedCustomer}" 
+                  IsEnabled="False"/>
         <Button x:Name="buttonSaveCustomer"
                 Grid.Row="0"
                 Grid.Column="1"

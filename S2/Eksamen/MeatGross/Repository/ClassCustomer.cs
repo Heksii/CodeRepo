@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Repository
 {
+    /// <summary>
+    /// Denne class har ansvaret for at holde på data om en bruger.
+    /// </summary>
     public class ClassCustomer : ClassNotify
     {
         private int _id;

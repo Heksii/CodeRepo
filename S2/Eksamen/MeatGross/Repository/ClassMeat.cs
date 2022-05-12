@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Repository
 {
+    /// <summary>
+    /// Denne class har ansvaret for at holde på data om et kød produkt.
+    /// </summary>
     public class ClassMeat : ClassNotify
     {
         private int _id;

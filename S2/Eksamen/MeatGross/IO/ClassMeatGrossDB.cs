@@ -10,6 +10,10 @@ using Repository;
 
 namespace IO
 {
+
+    /// <summary>
+    /// Denne class har ansvaret for at sende og modtage data fra og til databasen.
+    /// </summary>
     public class ClassMeatGrossDB : ClassDbCon
     {
         public ClassMeatGrossDB()

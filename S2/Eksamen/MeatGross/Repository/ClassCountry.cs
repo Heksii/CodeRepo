@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Repository
 {
+    /// <summary>
+    /// Denne class har ansvaret for at holde på data om landet tilknydtet til en bruger.
+    /// </summary>
     public class ClassCountry : ClassNotify
     {
         private int _id;

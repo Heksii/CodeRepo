@@ -103,7 +103,7 @@
                      FontFamily="System"
                      FontWeight="DemiBold"
                      Margin="24,2,24,2"
-                     TextAlignment="Right"
+                     TextAlignment="Left"
                      Text="{Binding order.orderWeight, UpdateSourceTrigger=PropertyChanged}"
                      VerticalAlignment="Top"
                      FontSize="26" />

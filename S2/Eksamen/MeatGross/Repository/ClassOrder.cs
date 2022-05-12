@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace Repository
 {
+    /// <summary>
+    /// Denne class har ansvaret for at holde på verdier om en bestilling som
+    /// en bruger har lavet.
+    /// </summary>
     public class ClassOrder : ClassNotify
     {
         private ClassApiRates _apiRates;
@@ -87,7 +91,13 @@ namespace Repository
             {
                 if (_orderWeight != value)
                 {
-                    _orderWeight = value;
+                    // Hvis der ikke er valgt en kød type,
+                    // eller hvis den indtastede verdi er mere end der er på lager, så sæt ikke verdien af fieldet
+                    if (int.TryParse(orderMeat.stock, out int x) && value <= Convert.ToInt32(orderMeat.stock))
+                    {
+                        _orderWeight = value;
+                    }
+                    
                     CalculateAllPrices();
                 }
                 Notify("orderWeight");
@@ -122,11 +132,10 @@ namespace Repository
     
         private void CalculateAllPrices()
         {
-            double dkkKurs = 0D;
             if (orderCustomer == null) return;
             if (apiRates == null) return;
 
-            dkkKurs = apiRates.Rates["DKK"]; 
+            double dkkKurs = apiRates.Rates["DKK"]; 
 
             orderPriceDKK = orderMeat.pricePerKG * orderWeight;
             orderPriceValuta = orderMeat.pricePerKG * orderWeight * (orderCustomer.country.valutaRate / dkkKurs);

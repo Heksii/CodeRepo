@@ -22,14 +22,14 @@ namespace IO
             
         }
 
-        public async Task<ClassApiRates> GetRatesFromWebApi()
+        public async Task<ClassCurrency> GetRatesFromWebApi()
         {
-            ClassApiRates res = new ClassApiRates();
+            ClassCurrency res = new ClassCurrency();
 
             try
             {
                 string strJson = await GetURLContentAsync("https://openexchangerates.org/api/latest.json?app_id=2cb05a5bf7804828b118ddd3e58a2e60&base=USD");
-                res = JsonConvert.DeserializeObject<ClassApiRates>(strJson);
+                res = JsonConvert.DeserializeObject<ClassCurrency>(strJson);
             }
             catch (Exception ex)
             {

@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace Repository
 {
+    /// <summary>
+    /// Denne class har ansvaret for at holde valuta kurserne 
+    /// som der modtages fra web API'en
+    /// </summary>
     public class ClassApiRates
     {
         private long _timestamp;
