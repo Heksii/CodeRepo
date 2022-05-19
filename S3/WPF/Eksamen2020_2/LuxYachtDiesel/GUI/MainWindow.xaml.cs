@@ -43,10 +43,5 @@ namespace GUI
             Supplier.Children.Add(UCSupplier);
             Price.Children.Add(UCDailyPrice);
         }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            
-        }
     }
 }

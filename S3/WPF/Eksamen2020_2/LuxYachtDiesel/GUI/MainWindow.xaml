@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Icon="pack://application:,,,/Image/Logo.jpg"
         Title="Luxury Yacht Diesel" Height="500" Width="800"
-        ResizeMode="NoResize" Loaded="Window_Loaded">
+        ResizeMode="NoResize">
     <Grid x:Name="MainGrid">
         <TabControl Margin="1">
             <TabItem Header=" Salg af DIESEL">
@@ -23,6 +23,5 @@
                 <Grid x:Name="Price" Background="White" />
             </TabItem>
         </TabControl>
-
     </Grid>
 </Window>

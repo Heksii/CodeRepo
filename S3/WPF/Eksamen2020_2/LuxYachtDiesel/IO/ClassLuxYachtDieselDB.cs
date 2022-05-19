@@ -195,18 +195,30 @@ namespace IO
             }
         }
 
-        public void SaveCustomerInDB(ClassCustomer res)
-        {
-        }
-
         public void SaveOrderToDB(ClassOrder inOrder)
         {
         }
 
-        public void SaveSupplierInDB(ClassCustomer cs)
+        public void InsertCustomerInDB(ClassCustomer inCustomer)
         {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "spInsertCustomerInDB";
+
+                cmd.Parameters.Add("@name", SqlDbType.NVarChar).Value = inCustomer.name;
+                cmd.Parameters.Add("@address", SqlDbType.NVarChar).Value = inCustomer.address;
+                cmd.Parameters.Add("@city", SqlDbType.NVarChar).Value = inCustomer.city;
+                cmd.Parameters.Add("@postalCode", SqlDbType.NVarChar).Value = inCustomer.postalCode;
+                cmd.Parameters.Add("@country", SqlDbType.Int).Value = inCustomer.country.Id;
+                cmd.Parameters.Add("@phone", SqlDbType.NVarChar).Value = inCustomer.phone;
+                cmd.Parameters.Add("@mailAdr", SqlDbType.NVarChar).Value = inCustomer.mailAdr;
+
+                MakeCallToStoredProcedure(cmd);
+            }
         }
-        
+
         public void UpdateCustomerInDB(ClassCustomer cc)
         {
             using (SqlCommand command = new SqlCommand())

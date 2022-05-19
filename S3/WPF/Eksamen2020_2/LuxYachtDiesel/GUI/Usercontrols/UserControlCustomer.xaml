@@ -138,7 +138,7 @@
                     Grid.Row="1"
                     Margin="3"
                     Visibility="Visible" 
-                    IsEnabled="{Binding isEditingCustomer}"/>
+                    IsEnabled="{Binding isEditingCustomer}" Click="ButtonGem_Click"/>
             <Button x:Name="ButtonFortryd"
                     Content="Fortryd"
                     Grid.Column="2"

@@ -1,6 +1,7 @@
 ﻿using IO;
 using Repository;
 using System.Collections.Generic;
+using System.Windows;
 
 namespace BIZ
 {
@@ -20,15 +21,10 @@ namespace BIZ
         private bool _isEditingCustomer;
         private bool _isEditingCustomerInv;
         private List<ClassCountry> _listCountries;
-
         private List<ClassCustomer> _listCustomers;
-
         private List<ClassSupplier> _listSuppliers;
-
         private ClassOrder _order;
-
         private ClassCustomer _selectedCustomer;
-
         private ClassSupplier _selectedSupplier;
 
         #endregion Private Fields
@@ -377,6 +373,16 @@ namespace BIZ
 
         public void UpdateOrInsertCustomerInDB()
         {
+            if (selectedCustomer.Id != 0)
+            {
+                classLuxYachtDieselDB.UpdateCustomerInDB(selectedCustomer);
+            }
+            else
+            {
+                classLuxYachtDieselDB.InsertCustomerInDB(selectedCustomer);
+            }
+
+            listCustomers = classLuxYachtDieselDB.GetAllCustomersFromDB();
         }
 
         public void UpdateOrInsertSupplierInDB()

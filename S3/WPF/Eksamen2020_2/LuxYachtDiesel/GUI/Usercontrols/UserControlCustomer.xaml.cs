@@ -43,6 +43,7 @@ namespace GUI
         private void ButtonFortryd_Click(object sender, RoutedEventArgs e)
         {
             biz.selectedCustomer = new ClassCustomer(biz.fallbackCustomer);
+            biz.GetAllCustomerForListFromDB();
             biz.isEditingCustomer = false;
         }
 
@@ -55,6 +56,12 @@ namespace GUI
 
             biz.selectedCustomer = new ClassCustomer();
             biz.isEditingCustomer = true;
+        }
+
+        private void ButtonGem_Click(object sender, RoutedEventArgs e)
+        {
+            biz.UpdateOrInsertCustomerInDB();
+            biz.isEditingCustomer = false;
         }
     }
 }
